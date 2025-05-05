@@ -98,4 +98,18 @@ async function getAllActresses(): Promise<Actress[] | null> {
     }
 }
 
-export {getActress, isActress, getAllActresses}
+//funzione per ottenere più attrici dai loro id
+async function getActresses(ids: number[]): Promise<(Actress | null)[]>{
+    try{
+        const promises = ids.map(id => getActress(id));
+
+        const results = await Promise.all(promises)
+
+        return results;
+    } catch(error){
+        console.error('Errore nel recuper dati', error);
+        return ids.map(() => null)
+    }
+}
+
+export {getActress, isActress, getAllActresses, getActresses}
