@@ -112,4 +112,33 @@ async function getActresses(ids: number[]): Promise<(Actress | null)[]>{
     }
 }
 
-export {getActress, isActress, getAllActresses, getActresses}
+//tipo per creare una nuova attrice senza id
+type createActressData = Omit<Actress, 'id'>;
+
+//funzione per creare una nuova attrice
+function createActress(actressData: createActressData): Actress {
+    //genero un id casuale
+    const randomId = Math.floor(Math.random() * 10000) + 1;
+
+    //combino i dati con l'id
+    const newActress: Actress = {
+        ...actressData,
+        id: randomId,
+    }
+    return newActress;
+}
+
+//tipo per aggiornane una attrice esistente
+type UpdateActressData = Partial<Omit<Actress, 'id'>>;
+
+//funzione per aggiornane una attrice 
+function updateActress(actress: Actress, updates: UpdateActressData): Actress{
+    //combino l'originale con gli aggiornamenti
+    const updateActress: Actress = {
+        ...actress,
+        ...updates,
+    }
+    return updateActress;
+}
+
+export {getActress, isActress, getAllActresses, getActresses, createActress, updateActress}
