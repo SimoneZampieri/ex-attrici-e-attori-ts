@@ -1,4 +1,4 @@
-type Person = {
+export type Person = {
     readonly id: number;
     readonly name: string;
     birth_year: number;
@@ -8,7 +8,7 @@ type Person = {
 }
 
 //varie nazionalità
-type Nationality = 
+export type Nationality = 
   | "American" 
   | "British" 
   | "Australian" 
@@ -22,10 +22,9 @@ type Nationality =
   | "Chinese";
 
 
-type Actress = Person & {
-    most_famous_movie: [string, string, string];
+export type Actress = Person & {
+    most_famous_movies: [string, string, string];
     awards: string;
     nationality: Nationality;
 }
 
-export {Person, Actress, Nationality}
