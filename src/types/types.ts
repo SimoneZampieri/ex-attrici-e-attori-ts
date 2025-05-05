@@ -28,3 +28,11 @@ export type Actress = Person & {
     nationality: Nationality;
 }
 
+//estendo le nazionlità
+export type ExtendedNationality = Nationality | "Scottish" | "New Zealand" | "Hong Kong" | "German" | "Canadian" | "Irish";
+
+export type Actor = Person & {
+   known_for: [string, string, string],
+   awards: [string, string, string],
+   nationality: ExtendedNationality;
+}
