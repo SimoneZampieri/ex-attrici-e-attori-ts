@@ -76,4 +76,26 @@ async function getActress(id: number): Promise<Actress | null> {
     }
 }
 
-export {getActress, isActress}
+//funzione per ottenere tutte le attrici
+async function getAllActresses(): Promise<Actress[] | null> {
+    try{
+        const response = await fetch(`https://boolean-spec-frontend.vercel.app/freetestapi/actresses`)
+        if(!response.ok){
+            return []
+        }
+        const data = await response.json();
+        if(Array.isArray(data)){
+            console.error('dati non validi', data);
+            return []
+        }
+        
+        //filtro i dati che corrispondono al tipo actress
+        const actresses = data.filter((item: unknown) => isActress(item));
+        return actresses;
+    } catch(error){
+        console.error('Errore nel recuper dei dati', error);
+        return []
+    }
+}
+
+export {getActress, isActress, getAllActresses}
